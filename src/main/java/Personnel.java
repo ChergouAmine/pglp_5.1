@@ -19,6 +19,24 @@ public class Personnel implements Personnels, Serializable{
   private java.time.LocalDateTime date_naissance;
   private ArrayList<Integer> num_tel;
   
+  public String getNom() {
+    return nom;
+}
+  
+  public String getPrenom() {
+    return nom;
+}
+  
+  public java.time.LocalDateTime getDate()
+  {
+    return date_naissance;
+  }
+  
+  public ArrayList<Integer> getNum()
+  {
+    return num_tel;
+  }
+  
   public static class Builder{
       private String nom;
       private String prenom;
