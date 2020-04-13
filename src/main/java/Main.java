@@ -49,7 +49,7 @@ public class Main {
 	
 	
 	 
-	  Groupe groupe  = new Groupe(g3);
+	  Groupe groupe  = new Groupe(g3,1);
      
      for(Iterator<Groupe> i = (Iterator<Groupe>) groupe.getIterator() ; i.hasNext(); ) {
          ((Personnels) i.next()).print();

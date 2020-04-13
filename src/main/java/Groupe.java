@@ -17,15 +17,19 @@ public class Groupe implements Serializable{
 
 
   ArrayList<Personnels> next;
-  
+  int id;
   Personnels premier;
 
-  public Groupe(Personnels persAvant) {
+  public Groupe(Personnels persAvant,int i) {
       premier = persAvant;
       next = new  ArrayList<Personnels>();
+      id=i;
   }
   
-  
+  public int getId()
+  {
+    return id;
+  }
   
   private class GroupeIterator implements Iterator<Object>{
       int index =0;
@@ -66,6 +70,10 @@ public class Groupe implements Serializable{
       return new GroupeIterator();
   }
 
+  
+  public void clear() {
+    next.clear();
+}
   
   /**
    * serialize vers fichier

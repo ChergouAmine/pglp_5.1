@@ -30,7 +30,7 @@ public class DAOCompositePersonnel implements DAO<CompositePersonnel>, Serializa
   /**
    * obtenir un CompositePersonnels du DAO
    */
-  public CompositePersonnel get(final int id) {
+  public CompositePersonnel get(int id) {
       for (CompositePersonnel p : list) {
           if (p.getId() == id) {
               return p;

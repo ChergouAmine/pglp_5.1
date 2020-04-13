@@ -1,0 +1,5 @@
+#Mon Apr 13 16:35:20 CEST 2020
+module-resource*?\:checkstyle-suppressions.xml=D31ABB5473ABB353FC6B808E2BEAAE0FEB00719
+module-resource*?\:checkstyle-xpath-suppressions.xml=8F13D183EDC6ECEEC029CCE1F91BD4036E8E0C18
+/home/user/Bureau/pglp_5.1/src/main/java/DAO.java=1586781300000
+configuration*?=AB9E3D54C09C770E3C2A66506DD9CF1F68F94D93
