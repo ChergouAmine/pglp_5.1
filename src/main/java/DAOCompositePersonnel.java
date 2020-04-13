@@ -5,67 +5,71 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class Groupe implements Serializable{
-
- 
+public class DAOCompositePersonnel implements DAO<CompositePersonnel>, Serializable{
 
   /**
    * 
    */
-  private static final long serialVersionUID = -5979666566467347313L;
-
-
-  ArrayList<Personnels> next;
+  private static final long serialVersionUID = 8290603030362628710L;
   
-  Personnels premier;
+  private ArrayList<CompositePersonnel> list;
 
-  public Groupe(Personnels persAvant) {
-      premier = persAvant;
-      next = new  ArrayList<Personnels>();
+  
+  public DAOCompositePersonnel() {
+      list = new ArrayList<CompositePersonnel>();
+  }
+  /**
+   * ajouter un CompositePersonnels dans la liste du DAO
+   */
+  public void add(final CompositePersonnel object) {
+      list.add(object);
   }
   
+  /**
+   * obtenir un CompositePersonnels du DAO
+   */
+  public CompositePersonnel get(final int id) {
+      for (CompositePersonnel p : list) {
+          if (p.getId() == id) {
+              return p;
+          }
+      }
+      return null;
+  }
+  /**
+   * liste de tout les CompositePersonnel du DAO
+   */
+  @SuppressWarnings("unchecked")
+  public ArrayList<CompositePersonnel> getAll() {
+      return (ArrayList<CompositePersonnel>) list.clone();
+  }
   
-  
-  private class GroupeIterator implements Iterator<Object>{
-      int index =0;
-      
-      public GroupeIterator() {
-          
-        next.add(premier);
-          
-          int i =0;
-          
-          while(i < next.size()) {
-              if(next.get(i) instanceof CompositePersonnel) {
-                  for(Personnels p : next.get(i).getPersonnels()) {
-                    next.add(p);
-                  }
+  /**
+   * modifier un CompositePersonnel
+   */
+  @SuppressWarnings("unchecked")
+  public void update(CompositePersonnel p,Map<String, Object> params) {
+      if (list.contains(p)) {
+          if (params.containsKey("personnels")) {
+              ArrayList<Personnels> r =
+              (ArrayList<Personnels>)
+              params.get("personnels");
+              p.clear();
+              for (Personnels pp : r) {
+                  p.add(pp);
               }
-              i++;
           }
-          
-      }
-      
-      public boolean hasNext() {
-          if(index < next.size()) {
-              return true;
-          }
-          
-          return false;
-      }
-
-      public Personnels next() {
-        Personnels gp = next.get(index);
-          index++;
-          return gp;
       }
   }
   
-  public Iterator<?> getIterator() {
-      return new GroupeIterator();
+  /**
+   * supprime un CompositePersonnels du DAO
+   */
+  public void remove(final CompositePersonnel p) {
+      list.remove(p);
   }
-
   
   /**
    * serialize vers fichier
@@ -99,13 +103,13 @@ public class Groupe implements Serializable{
    * @param path du fichier pour deserializer
    * @return l'instance de classe créée avec deserialization
    */
-  public static Groupe deserialize(final String path) {
+  public static DAOCompositePersonnel deserialize(final String path) {
       ObjectInputStream reader = null;
-      Groupe p = null;
+      DAOCompositePersonnel p = null;
       try {
           FileInputStream file = new FileInputStream(path);
           reader = new ObjectInputStream(file);
-          p = (Groupe) reader.readObject();
+          p = (DAOCompositePersonnel) reader.readObject();
       } catch (IOException e) {
           System.err.println(
           "deserialization to \""
@@ -122,5 +126,6 @@ public class Groupe implements Serializable{
       }
       return p;
   }
-  
+
+
 }

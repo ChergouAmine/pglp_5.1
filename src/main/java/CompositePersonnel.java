@@ -8,16 +8,25 @@ import java.util.ArrayList;
 
 public class CompositePersonnel implements Personnels, Serializable{
 	
+
   /**
    * 
    */
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 5947114618672174537L;
   int id;
   public ArrayList<Personnels> personnes = new ArrayList<Personnels>();
   
   
   public CompositePersonnel(int i) {
       id = i;
+  }
+  
+  public void clear() {
+    personnes.clear();
+}
+  
+  public int getId() {
+    return id;
   }
   
   public ArrayList<Personnels> getPersonnels(){
@@ -67,11 +76,11 @@ public class CompositePersonnel implements Personnels, Serializable{
    */
   public static CompositePersonnel deserialize(final String path) {
       ObjectInputStream reader = null;
-      Personnel p = null;
+      CompositePersonnel p = null;
       try {
           FileInputStream file = new FileInputStream(path);
           reader = new ObjectInputStream(file);
-          p = (Personnel) reader.readObject();
+          p = (CompositePersonnel) reader.readObject();
       } catch (IOException e) {
           System.err.println(
           "deserialization to \""

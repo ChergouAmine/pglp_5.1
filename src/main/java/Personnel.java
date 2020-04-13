@@ -9,10 +9,11 @@ import java.util.ArrayList;
 
 public class Personnel implements Personnels, Serializable{
   
+
   /**
    * 
    */
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 6273042930814478355L;
   private String nom;
   private String prenom;
   private String fonction;

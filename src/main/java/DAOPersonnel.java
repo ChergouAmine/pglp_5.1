@@ -40,7 +40,7 @@ public class DAOPersonnel implements DAO<Personnel>, Serializable{
       return null;
   }
   /**
-   * obtenir la liste de tout les personnels du DAO.
+   *liste de tout les personnel du DAO.
    */
   @SuppressWarnings("unchecked")
   public ArrayList<Personnel> getAll() {
@@ -51,8 +51,7 @@ public class DAOPersonnel implements DAO<Personnel>, Serializable{
    * modifier un personnel
    */
   @SuppressWarnings("unchecked")
-  public void update1(Personnel p,
-          final Map<String, Object> params) {
+  public void update(Personnel p,Map<String, Object> params) {
       if (list.remove(p)) {
           String nom = "";
           if (params.containsKey("nom")) {
@@ -125,13 +124,13 @@ public class DAOPersonnel implements DAO<Personnel>, Serializable{
    * @param path du fichier pour deserializer
    * @return l'instance de classe créée avec deserialization
    */
-  public static Personnel deserialize(final String path) {
+  public static DAOPersonnel deserialize(final String path) {
       ObjectInputStream reader = null;
-      Personnel p = null;
+      DAOPersonnel p = null;
       try {
           FileInputStream file = new FileInputStream(path);
           reader = new ObjectInputStream(file);
-          p = (Personnel) reader.readObject();
+          p = (DAOPersonnel) reader.readObject();
       } catch (IOException e) {
           System.err.println(
           "deserialization to \""
@@ -154,8 +153,5 @@ public class DAOPersonnel implements DAO<Personnel>, Serializable{
     return null;
   }
 
-  public void update(Personnel object, Map<String, Object> params) {
-    // TODO Auto-generated method stub
-    
-  }
+ 
 }

@@ -17,9 +17,9 @@ public class DAOFabrique {
   public static DAO<CompositePersonnel>
   getDaoCompositePersonnels(final String deserialize) {
       if (deserialize == null) {
-          return new DaoCompositePersonnel();
+          return new DAOCompositePersonnel();
       } else {
-          return DaoCompositePersonnel.deserialize(deserialize);
+          return DAOCompositePersonnel.deserialize(deserialize);
       }
   }
   
