@@ -65,7 +65,7 @@ public class CompositePersonnel implements Personnels, Serializable{
    * @param path du fichier pour deserializer
    * @return l'instance de classe créée avec deserialization
    */
-  public static Personnel deserialize(final String path) {
+  public static CompositePersonnel deserialize(final String path) {
       ObjectInputStream reader = null;
       Personnel p = null;
       try {
